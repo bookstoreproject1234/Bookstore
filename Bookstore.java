@@ -230,7 +230,9 @@ public class Bookstore {
 
                     // Construct and add order into array
                     orders[i] = new Order(buyer, product, id, day, month, year, qty, price);
-                    buyer.addToHistory(orders[i]);
+                    if (buyer != null) {
+                        buyer.addToHistory(orders[i]);
+                    }
                 }
                 reader.close();
 
@@ -266,13 +268,25 @@ public class Bookstore {
                     writer.newLine();
                     writer.write("" + orders[i].getYear());
                     writer.newLine();
-                    writer.write("" + orders[i].getProduct().getId());
+                    Item product = orders[i].getProduct();
+                    if (product == null) {
+                        writer.write("-1");   
+                    }
+                    else {
+                        writer.write("" + product.getId());
+                    }
                     writer.newLine();
                     writer.write("" + orders[i].getQty());
                     writer.newLine();
                     writer.write("" + orders[i].getPrice());
                     writer.newLine();
-                    writer.write(orders[i].getBuyer().getName());
+                    Account Buyer = orders[i].getBuyer();
+                    if (Buyer == null) {
+                        writer.write("null");   
+                    }
+                    else {
+                        writer.write(Buyer.getName());
+                    }
                     writer.newLine();
                 }
                 writer.close();
