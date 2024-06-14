@@ -153,7 +153,7 @@
      * String toString()
      * Return String - Formatted string containing field information. 
      * 
-     * The method returns the fields of the order in a formatted string. 
+     * The method returns the fields of the order in a formatted string. It requires that buyer and product are not null. 
      */
     public String toString() {
         return "Ordered by: " + buyer.getName() + "\nOrdered item: " + product.getName()
